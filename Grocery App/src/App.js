@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
+import AddItemBox from "./components/AddItemBox";
+import ItemName from "./components/ItemName";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -8,6 +10,7 @@ import {
   faCheckCircle,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
+import Quantity from "./components/Quantity";
 
 const App = () => {
   // HINT: each "item" in our list names a name,
@@ -75,55 +78,30 @@ const App = () => {
   return (
     <div className="app-background">
       <div className="main-container">
-        <div className="add-item-box">
-          <input
-            value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
-            className="add-item-input"
-            placeholder="Add an item..."
-          />
-          <FontAwesomeIcon
-            icon={faPlus}
-            onClick={() => handleAddButtonClick()}
-          />
-        </div>
+        <AddItemBox
+          handleAddButtonClick={handleAddButtonClick}
+          faPlus={faPlus}
+          setInputValue={setInputValue}
+          inputValue={inputValue}
+        />
         <div className="item-list">
           {items.map((item, index) => (
             <div className="item-container">
-              <div
-                className="item-name"
-                contenteditable="true"
-                onClick={() => toggleComplete(index)}
-              >
-                {item.isSelected ? (
-                  <>
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                    <span className="completed" contenteditable="true"> 
-                      {item.itemName}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <FontAwesomeIcon icon={faCircle} />
-                    <span>{item.itemName}</span>
-                  </>
-                )}
-              </div>  
-              <div className="quantity">
-                <button>
-                  <FontAwesomeIcon
-                    icon={faChevronLeft}
-                    onClick={() => handleQuantityDecrease(index)}
-                  />
-                </button>
-                <span> {item.quantity} </span>
-                <button>
-                  <FontAwesomeIcon
-                    icon={faChevronRight}
-                    onClick={() => handleQuantityIncrease(index)}
-                  />
-                </button>
-              </div>
+              <ItemName
+                faCircle={faCircle}
+                faCheckCircle={faCheckCircle}
+                item={item}
+                index={index}
+                toggleComplete={toggleComplete}
+              />
+
+              <Quantity
+                index={index}
+                item={item}
+                handleQuantityDecrease={handleQuantityDecrease}
+                faChevronLeft={faChevronLeft}
+                faChevronRight={faChevronRight}
+              />
             </div>
           ))}
         </div>
