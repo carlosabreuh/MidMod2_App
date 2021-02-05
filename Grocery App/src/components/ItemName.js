@@ -1,22 +1,18 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const ItemName = (props) => {
+  const { faCheckCircle, index, faCircle } = props;
+
   return (
-    <div
-      className="item-name"
-      contenteditable="true"
-      onClick={() => props.toggleComplete(props.index)}
-    >
+    <div className='item-name' onClick={() => props.toggleComplete(index)}>
       {props.item.isSelected ? (
         <>
-          <FontAwesomeIcon icon={props.faCheckCircle} />
-          <span className="completed" contenteditable="true">
-            {props.item.itemName}
-          </span>
+          <FontAwesomeIcon icon={faCheckCircle} />
+          <span className='completed'>{props.item.itemName}</span>
         </>
       ) : (
         <>
-          <FontAwesomeIcon icon={props.faCircle} />
+          <FontAwesomeIcon icon={faCircle} />
           <span>{props.item.itemName}</span>
         </>
       )}
