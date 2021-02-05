@@ -1,20 +1,24 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
+
 
 const Quantity = (props) => {
+  const { handleQuantityDecrease, handleQuantityIncrease, index, faChevronRight, faChevronLeft } = props;
   return (
-    <div className="quantity">
+    <div className='quantity'>
       <button>
         <FontAwesomeIcon
-          icon={props.faChevronLeft}
-          onClick={() => props.handleQuantityDecrease(props.index)}
+          icon={faChevronLeft}
+          onClick={() => handleQuantityDecrease(index)}
         />
       </button>
       <span> {props.item.quantity} </span>
       <button>
         <FontAwesomeIcon
-          icon={props.faChevronRight}
-          onClick={() => props.handleQuantityIncrease(props.index)}
+          icon={faChevronRight}
+          onClick={() => handleQuantityIncrease(index)}
         />
       </button>
     </div>
