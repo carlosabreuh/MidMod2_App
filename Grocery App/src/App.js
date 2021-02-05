@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import "./index.css";
-import AddItemBox from "./components/AddItemBox";
-import ItemName from "./components/ItemName";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from 'react';
+import './index.css';
+import AddItemBox from './components/AddItemBox';
+import ItemName from './components/ItemName';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronRight,
   faChevronLeft,
   faCircle,
   faCheckCircle,
   faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import Quantity from "./components/Quantity";
+} from '@fortawesome/free-solid-svg-icons';
+import Quantity from './components/Quantity';
 
 const App = () => {
   // HINT: each "item" in our list names a name,
   // a boolean to tell if its been completed, and a quantity
   const [items, setItems] = useState([
-    { itemName: "item 1", quantity: 1, isSelected: false }, //Item variables or our app to render
-    { itemName: "item 2", quantity: 3, isSelected: true },
-    { itemName: "item 3", quantity: 2, isSelected: false },
+    { itemName: 'item 1', quantity: 1, isSelected: false }, //Item variables or our app to render
+    { itemName: 'item 2', quantity: 3, isSelected: true },
+    { itemName: 'item 3', quantity: 2, isSelected: false },
   ]);
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [totalItemCount, setTotalItemCount] = useState(6);
 
   const handleAddButtonClick = () => {
@@ -34,7 +34,7 @@ const App = () => {
     const newItems = [...items, newItem];
 
     setItems(newItems);
-    setInputValue("");
+    setInputValue('');
     calculateTotal();
   };
 
@@ -76,17 +76,17 @@ const App = () => {
   };
 
   return (
-    <div className="app-background">
-      <div className="main-container">
+    <div className='app-background'>
+      <div className='main-container'>
         <AddItemBox
           handleAddButtonClick={handleAddButtonClick}
           faPlus={faPlus}
           setInputValue={setInputValue}
           inputValue={inputValue}
         />
-        <div className="item-list">
+        <div className='item-list'>
           {items.map((item, index) => (
-            <div className="item-container">
+            <div className='item-container'>
               <ItemName
                 faCircle={faCircle}
                 faCheckCircle={faCheckCircle}
@@ -98,6 +98,7 @@ const App = () => {
               <Quantity
                 index={index}
                 item={item}
+                handleQuantityIncrease={handleQuantityIncrease}
                 handleQuantityDecrease={handleQuantityDecrease}
                 faChevronLeft={faChevronLeft}
                 faChevronRight={faChevronRight}
@@ -105,7 +106,7 @@ const App = () => {
             </div>
           ))}
         </div>
-        <div className="total">Total: {totalItemCount}</div>
+        <div className='total'>Total: {totalItemCount}</div>
       </div>
     </div>
   );
